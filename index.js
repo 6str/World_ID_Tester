@@ -11,10 +11,10 @@ window.onload = load();
 
 async function load() {
 	eventListeners();
+	getAccount();
 	loadData();
 	initWID();
 	setSignal();
-	getAccount();
 }
 
 
@@ -46,13 +46,11 @@ function onWorldIDVerified(proof) {
 }
 
 // gets connected wallet account
-
 async function getAccount() {
 	accounts = await ethereum.request({ method: "eth_accounts" });
 	if (accounts.length !== 0) {
 		const account = accounts[0];
 		console.log("Found an authorized account:", account);
-
 		document.getElementById("walletAddress").value = account.slice(0,6) + ".." + account.slice(-6);
 	} else {
 		document.getElementById("walletAddress").value = "connect wallet";
@@ -68,6 +66,7 @@ function copyWalletAddress() {
 	if(accounts[0]) {
 		navigator.clipboard.writeText(accounts[0]);
 	} else {
+		console.log("no wallet connected")
 		showError(["walletAddress"]);
 	}
 }

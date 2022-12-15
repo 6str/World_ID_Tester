@@ -1,2 +1,4 @@
 # World_ID_Tester
-a bare bones frontend to perform worldcoin widget tests, and contract verifyAndExecute tests
+A vanilla JS bare bones frontend to perform World ID widget tests, and contract verifyAndExecute tests.
+
+
