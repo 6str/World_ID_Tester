@@ -66,7 +66,7 @@ function copyWalletAddress() {
 	if(accounts[0]) {
 		navigator.clipboard.writeText(accounts[0]);
 	} else {
-		console.log("no wallet connected")
+		console.log("no wallet connected");
 		showError(["walletAddress"]);
 	}
 }
@@ -107,29 +107,34 @@ async function verifyProof() {
 	try {
 		const { ethereum } = window;
 		if (ethereum) {
+
+			const emptyInputs = [];
+
 			const contractAddress = document.getElementById("contractAddress").value;
+			!contractAddress && emptyInputs.push("contractAddress");
+
+			const signal = document.getElementById("inputSignal").value;
+			!signal && emptyInputs.push("inputSignal");
 			
-			if(!contractAddress) {
-				showError(["contractAddress"]);
+			let root = document.getElementById("inputMerkRoot").value
+			if(!root) emptyInputs.push("inputMerkRoot");
+			else root = ethers.BigNumber.from(root);
+			
+			
+			let nullifier = document.getElementById("inputNullHash").value
+			if(!nullifier) emptyInputs.push("inputNullHash");
+			else nullifier = ethers.BigNumber.from(nullifier);
+
+			const proof = document.getElementById("inputProof").value;
+			!proof && emptyInputs.push("inputProof");
+
+			
+			if(emptyInputs.length) {
+				showError(emptyInputs);
+				console.log("required inputs empty:",...emptyInputs)
 				return;
 			}
 
-			const provider = new ethers.providers.Web3Provider(ethereum);
-			const signer = provider.getSigner();
-			const connectedContract = new ethers.Contract(
-				contractAddress,
-				abi,
-				signer
-			);
-
-			const signal = document.getElementById("inputSignal").value;
-			const root = ethers.BigNumber.from(
-				document.getElementById("inputMerkRoot").value
-			);
-			const nullifier = ethers.BigNumber.from(
-				document.getElementById("inputNullHash").value
-			);
-			const proof = document.getElementById("inputProof").value;
 
 			const unpackedProof = ethers.utils.defaultAbiCoder.decode(
 				["uint256[8]"],
@@ -139,14 +144,28 @@ async function verifyProof() {
 			console.log(unpackedProof);
 			console.log("/unpacked proof");
 
+			
+			const provider = new ethers.providers.Web3Provider(ethereum);
+			const signer = provider.getSigner();
+			if(!signer.address){
+				console.log("no wallet connected");
+				showError(["walletAddress"]);
+				return;
+			}
+			const connectedContract = new ethers.Contract(
+				contractAddress,
+				abi,
+				signer
+			);
+
+
 			try {
-				// note: metamask throws can't estimate gas if txn will revert due to nullifier previously used
 				const retVal = await connectedContract.verifyAndExecute(
 					signal,
 					root,
 					nullifier,
 					unpackedProof,
-					{ gasLimit: 600000 }
+					{ gasLimit: 800000 }
 				);
 				await retVal.wait();
 				console.log("result: ", retVal);
@@ -154,6 +173,7 @@ async function verifyProof() {
 				console.log("error:", error);
 			}
 		} else {
+			showError(["walletAddress"]);
 			console.log("Ethereum object doesn't exist!");
 		}
 	} catch (error) {
