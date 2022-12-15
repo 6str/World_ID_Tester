@@ -45,6 +45,24 @@ function onWorldIDVerified(proof) {
 	document.getElementById("autoLoad").checked && loadProof();
 }
 
+// connect metamask
+async function connectWallet() {
+	if(!accounts.length === 0) return;
+	accounts = await ethereum.request({ method: "eth_requestAccounts" });
+	if (accounts.length !== 0) {
+		const account = accounts[0];
+		console.log("Found an authorized account:", account);
+		document.getElementById("walletAddress").value = account.slice(0,6) + ".." + account.slice(-6);
+	} else {
+		document.getElementById("walletAddress").value = "connect wallet";
+		console.log("No authorized account found");
+	}
+
+	const chainId = await ethereum.request({ method: "eth_chainId" });
+	console.log("chainId: ", chainId);
+}
+
+
 // gets connected wallet account
 async function getAccount() {
 	accounts = await ethereum.request({ method: "eth_accounts" });
@@ -60,6 +78,7 @@ async function getAccount() {
 	const chainId = await ethereum.request({ method: "eth_chainId" });
 	console.log("chainId: ", chainId);
 }
+
 
 // copy the connected wallet address to the clipboard
 function copyWalletAddress() {
@@ -88,6 +107,15 @@ function setActionId() {
 
 // to set/update the signal param
 function setSignal() {
+	
+	try {worldID.getProps().length;}
+	catch {
+		showError(["actionId", "actionId_Btn"]);
+		console.log("World ID widget not intialised");
+		return;
+	}
+	console.log("worldID", worldID.getProps().length == 0);
+	
 	const signal = document.getElementById("inputSignal").value;
 	if(signal){
 		worldID.update({
@@ -108,30 +136,32 @@ async function verifyProof() {
 		const { ethereum } = window;
 		if (ethereum) {
 
-			const emptyInputs = [];
+			const missingInputs = [];
+			
+			if(accounts.length === 0) missingInputs.push(["walletAddress"]);
 
 			const contractAddress = document.getElementById("contractAddress").value;
-			!contractAddress && emptyInputs.push("contractAddress");
+			!contractAddress && missingInputs.push("contractAddress");
 
 			const signal = document.getElementById("inputSignal").value;
-			!signal && emptyInputs.push("inputSignal");
+			!signal && missingInputs.push("inputSignal");
 			
 			let root = document.getElementById("inputMerkRoot").value
-			if(!root) emptyInputs.push("inputMerkRoot");
+			if(!root) missingInputs.push("inputMerkRoot");
 			else root = ethers.BigNumber.from(root);
 			
 			
 			let nullifier = document.getElementById("inputNullHash").value
-			if(!nullifier) emptyInputs.push("inputNullHash");
+			if(!nullifier) missingInputs.push("inputNullHash");
 			else nullifier = ethers.BigNumber.from(nullifier);
 
 			const proof = document.getElementById("inputProof").value;
-			!proof && emptyInputs.push("inputProof");
+			!proof && missingInputs.push("inputProof");
 
-			
-			if(emptyInputs.length) {
-				showError(emptyInputs);
-				console.log("required inputs empty:",...emptyInputs)
+
+			if(missingInputs.length) {
+				showError(missingInputs);
+				console.log("required inputs missing:",...missingInputs)
 				return;
 			}
 
@@ -144,14 +174,9 @@ async function verifyProof() {
 			console.log(unpackedProof);
 			console.log("/unpacked proof");
 
-			
+
 			const provider = new ethers.providers.Web3Provider(ethereum);
 			const signer = provider.getSigner();
-			if(!signer.address){
-				console.log("no wallet connected");
-				showError(["walletAddress"]);
-				return;
-			}
 			const connectedContract = new ethers.Contract(
 				contractAddress,
 				abi,
@@ -236,6 +261,15 @@ function eventListeners() {
 		"click",
 		function () {
 			copyWalletAddress();
+		},
+		false
+	);
+
+	const walletAddressBox = document.getElementById("walletAddress")
+	walletAddressBox.addEventListener(
+		"click",
+		function () {
+			connectWallet();
 		},
 		false
 	);
