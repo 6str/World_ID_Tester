@@ -142,18 +142,22 @@ async function verifyProof() {
 
 			const contractAddress = document.getElementById("contractAddress").value;
 			!contractAddress && missingInputs.push("contractAddress");
+			console.log("contract address:", contractAddress);
 
 			const signal = document.getElementById("inputSignal").value;
 			!signal && missingInputs.push("inputSignal");
+			console.log("signal:", signal);
 			
 			let root = document.getElementById("inputMerkRoot").value
 			if(!root) missingInputs.push("inputMerkRoot");
 			else root = ethers.BigNumber.from(root);
+			console.log("merkle root:", root);
 			
 			
 			let nullifier = document.getElementById("inputNullHash").value
 			if(!nullifier) missingInputs.push("inputNullHash");
 			else nullifier = ethers.BigNumber.from(nullifier);
+			console.log("nullifier hash:", nullifier);
 
 			const proof = document.getElementById("inputProof").value;
 			!proof && missingInputs.push("inputProof");
@@ -174,9 +178,11 @@ async function verifyProof() {
 			console.log(unpackedProof);
 			console.log("/unpacked proof");
 
-
+			console.log("get provider");
 			const provider = new ethers.providers.Web3Provider(ethereum);
+			console.log("get signer")
 			const signer = provider.getSigner();
+			console.log("connect to contract")
 			const connectedContract = new ethers.Contract(
 				contractAddress,
 				abi,
