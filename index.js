@@ -189,6 +189,8 @@ async function verifyProof() {
 			// 	abi,
 			// 	signer
 			// );
+
+			console.log('Version: ' + process.version);
 			const connectedContract = new ethers.Contract(
 				'0xd57dAFCF4Efb58D3d0fD0C36216B6b189Ca67324',
 				abi,
