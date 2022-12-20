@@ -143,6 +143,7 @@ async function verifyProof() {
 			const contractAddress = document.getElementById("contractAddress").value;
 			!contractAddress && missingInputs.push("contractAddress");
 			console.log("contract address:", contractAddress);
+			console.log("address is typeof:", typeof contractAddress);
 
 			const signal = document.getElementById("inputSignal").value;
 			!signal && missingInputs.push("inputSignal");
