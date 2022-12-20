@@ -143,7 +143,6 @@ async function verifyProof() {
 			const contractAddress = document.getElementById("contractAddress").value;
 			!contractAddress && missingInputs.push("contractAddress");
 			console.log("contract address:", contractAddress);
-			console.log("address is typeof:", typeof contractAddress);
 
 			const signal = document.getElementById("inputSignal").value;
 			!signal && missingInputs.push("inputSignal");
@@ -179,12 +178,9 @@ async function verifyProof() {
 			console.log(unpackedProof);
 			console.log("/unpacked proof");
 
-			console.log("get provider");
+
 			const provider = new ethers.providers.Web3Provider(ethereum);
-			console.log("get signer")
 			const signer = provider.getSigner();
-			console.log("connect to contract")
-			console.log("log test: " + contractAddress + " is address: " + ethers.utils.isAddress(contractAddress));
 			const connectedContract = new ethers.Contract(
 				contractAddress,
 				abi,
@@ -192,16 +188,8 @@ async function verifyProof() {
 			);
 
 
-			// const connectedContract = new ethers.Contract(
-			// 	'0xd57dAFCF4Efb58D3d0fD0C36216B6b189Ca67324',
-			// 	abi,
-			// 	signer
-			// );
-
-
-
 			try {
-				console.log("verifyAndExecut");
+				console.log("verifyAndExecute");
 				const retVal = await connectedContract.verifyAndExecute(
 					signal,
 					root,
