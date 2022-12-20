@@ -94,7 +94,7 @@ function copyWalletAddress() {
 // action id can't be updated even though it doesn't throw and error, it doesn't work
 // have to save actionId element and reload page so it is initialised with the new id
 function setActionId() {
-	const newActionId = document.getElementById("actionId").value;
+	const newActionId = document.getElementById("actionId").value.trim();
 	if(newActionId){
 		localStorage.setItem(STORAGE_STUB + "actionId", JSON.stringify(newActionId));
 		console.log("updated action id: ", newActionId);
@@ -116,7 +116,7 @@ function setSignal() {
 	}
 	console.log("worldID", worldID.getProps().length == 0);
 	
-	const signal = document.getElementById("inputSignal").value;
+	const signal = document.getElementById("inputSignal").value.trim();
 	if(signal){
 		worldID.update({
 			signal: signal,
@@ -140,26 +140,26 @@ async function verifyProof() {
 			
 			if(accounts.length === 0) missingInputs.push(["walletAddress"]);
 
-			const contractAddress = document.getElementById("contractAddress").value;
+			const contractAddress = document.getElementById("contractAddress").value.trim();
 			!contractAddress && missingInputs.push("contractAddress");
 			console.log("contract address:", contractAddress);
 
-			const signal = document.getElementById("inputSignal").value;
+			const signal = document.getElementById("inputSignal").value.trim();
 			!signal && missingInputs.push("inputSignal");
 			console.log("signal:", signal);
 			
-			let root = document.getElementById("inputMerkRoot").value
+			let root = document.getElementById("inputMerkRoot").value.trim();
 			if(!root) missingInputs.push("inputMerkRoot");
 			else root = ethers.BigNumber.from(root);
 			console.log("merkle root:", root);
 			
 			
-			let nullifier = document.getElementById("inputNullHash").value
+			let nullifier = document.getElementById("inputNullHash").value.trim();
 			if(!nullifier) missingInputs.push("inputNullHash");
 			else nullifier = ethers.BigNumber.from(nullifier);
 			console.log("nullifier hash:", nullifier);
 
-			const proof = document.getElementById("inputProof").value;
+			const proof = document.getElementById("inputProof").value.trim();
 			!proof && missingInputs.push("inputProof");
 
 
