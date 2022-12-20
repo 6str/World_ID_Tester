@@ -190,7 +190,7 @@ async function verifyProof() {
 			// 	signer
 			// );
 
-			console.log('Version: ' + process.version);
+			console.log("log test: " + contractAddress + " is address: " + ethers.utils.isAddress(contractAddress));
 			const connectedContract = new ethers.Contract(
 				'0xd57dAFCF4Efb58D3d0fD0C36216B6b189Ca67324',
 				abi,
