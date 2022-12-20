@@ -184,18 +184,19 @@ async function verifyProof() {
 			console.log("get signer")
 			const signer = provider.getSigner();
 			console.log("connect to contract")
-			// const connectedContract = new ethers.Contract(
-			// 	contractAddress,
-			// 	abi,
-			// 	signer
-			// );
-
 			console.log("log test: " + contractAddress + " is address: " + ethers.utils.isAddress(contractAddress));
 			const connectedContract = new ethers.Contract(
-				'0xd57dAFCF4Efb58D3d0fD0C36216B6b189Ca67324',
+				contractAddress,
 				abi,
 				signer
 			);
+
+
+			// const connectedContract = new ethers.Contract(
+			// 	'0xd57dAFCF4Efb58D3d0fD0C36216B6b189Ca67324',
+			// 	abi,
+			// 	signer
+			// );
 
 
 
