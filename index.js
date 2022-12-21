@@ -195,7 +195,7 @@ async function verifyProof() {
 					root,
 					nullifier,
 					unpackedProof,
-					{ gasLimit: 800000 }
+					{ gasLimit: 600000 }
 				);
 				await retVal.wait();
 				console.log("result: ", retVal);
