@@ -17,7 +17,7 @@ Use it as a quick way to introduce yourself to getting started with World ID, an
 
 ## Test your World ID action ID with the widget
 *  Use the World ID Tester Action ID - wid_staging_462cbbb314500c6917aec0263c68aadd or set up your own at the Worldcoin developer portal https://developer.worldcoin.org/actions
-*  Set the front end up with the Action ID (requires save and page reload) and set a signal, which is commonly a user's wallet address.
+*  Set the front end up with the Action ID (requires save inputs and a page reload) and set a signal, which is commonly a user's wallet address.
 * click the World ID widget at the top left and click Copy QR code
 * Go to back to the simulator and refresh the page for good measure
 * Click Enter or paste QR at the top and paste the code you copies into the input box at the bottom
