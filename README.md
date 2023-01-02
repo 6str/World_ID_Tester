@@ -20,27 +20,27 @@ Use it as a quick way to introduce yourself to getting started with World ID, an
 *  Set the front end up with the Action ID (requires save inputs and a page reload) and set a signal, which is commonly a user's wallet address.
 * click the World ID widget at the top left and click Copy QR code
 * Go to back to the simulator and refresh the page for good measure
-* Click Enter or paste QR at the top and paste the code you copies into the input box at the bottom
+* Click Enter or paste QR at the top and paste the code you copied into the input box at the bottom
 * After a few seconds the simulator should respond with World ID Tester wants to verify ... click VERIFY WITH WORLD ID. If the simulator doesn't show this message, try refreshing the World ID Tester page to re-init the widget, and restart the process from clicking on the Widget.
 * once you have the Verification Successful message on the simulator, return to the World ID Tester and the widget dialog should show Identity Confirmed!. Click continue
-* if you had the autoload verified proofs checkbox check, the proof received by World ID Tester will be autoloaded into the merkle root, nullifier hash and proof (packed) inputs. Otherwise, click load proof. You can also see the proof as received in the browser's console (F12)
+* if you had the autoload verified proofs checkbox checked, the proof received by World ID Tester will be autoloaded into the merkle root, nullifier hash and proof (packed) inputs. Otherwise, click load proof. You can also see the proof as received in the browser's developer console (F12)
 
 ## Test On-Chain Verification
 * Test on-chain verification with the World ID Tester smart contract at address 0x59c6d3996F739c7960fD59c8eEaaD55aF8614Db3 on Polygon Mumbai, or the verifyAndExecute function of your own smart contract
 * set the World ID Tester Action ID to the same as used in the smart contract and follow the steps above
 * set the contract address to the target smart contract and click the verifyAndExecute button
-* confirm the transaction, and if all is well, the transaction will succeed. If not, txn return data can be veiwed in the browser console.
-* note: you can generate a proof several times with the same simulator identity, but you will only be able to verify the proof successfully once (which is kinda the point). If you want to retest verifyAndExecute after a successful on-chain verification, you'll have to create a fresh identity on simulator and follow the proceeding steps to generate a new proof with a unique nullifier hash.
+* confirm the transaction, and if all is well, the transaction will succeed. If not, txn return data can be veiwed in the browser's developer console.
+* note: you can generate a proof several times with the same simulator identity, but you will only be able to verify the proof successfully once (which is kinda the point). If you want to retest verifyAndExecute after a successful on-chain verification, you'll have repeat the steps to create a fresh identity on simulator and generate a new proof with a unique nullifier hash.
 
 
 ## Worldcoin Resources
 * about Worldcoin
-..* https://id.worldcoin.org/
-..* https://worldcoin.org/
+    * https://id.worldcoin.org/
+    * https://worldcoin.org/
 
 * dev links
-https://id.worldcoin.org/quick-start
-https://developer.worldcoin.org/
+    * https://id.worldcoin.org/quick-start
+    * https://developer.worldcoin.org/
 
 
 
