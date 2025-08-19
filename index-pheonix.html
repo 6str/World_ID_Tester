@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>World ID Tester</title>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="Worldcoin, World ID, Sybil">
+	<meta name="description" content="A tester / helper for Worldcoin World ID development">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/svg+xml" href="/images/favicon-darkMode.svg" media="(prefers-color-scheme: dark" >
+	<link rel="icon" type="image/svg+xml" href="/images/favicon-lightMode.svg" media="(prefers-color-scheme: light" >
+	<!-- font awesome -->
+	<link 
+        rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" 
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer"
+    />
+	<link href="https://fonts.googleapis.com/css?family=Open Sans:400,700" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="styles.css" />
+	<script  type="text/javascript"   src="//unpkg.com/@worldcoin/id/dist/world-id.js" ></script>
+</head>
+
+<body>
+	
+	<header>
+		<h1>World ID Tester</h1>
+	</header>
+
+	<div id="subHeaderContainer">
+		<div id="world-id-container"></div>
+		<div>
+			<!-- <i class="far fa-copy" onclick="myScript"></i> -->
+			<i id="walletCopy" class="far fa-copy"></i>
+			<input type="text" readonly id="walletAddress" title="connect wallet address" placeholder="connect wallet">
+		</div>
+	</div>
+
+	<!-- wid / action id -->
+	<div class="lineContainer">
+		<div class="lineInputs">
+			<label class="labels" display: inline-block>action id</label>
+			<input type="text" id="actionId" class="inputs saveable" title="action id" placeholder="wid action id">
+		</div>
+		<div class="lineButtons">
+			<button id="actionId_Btn" class="btn" title="set wid: requires reload">set id</button>		</div>
+	</div>
+
+	<div class="lineContainer">
+		<div class="lineInputs">
+			<label class="labels" display: inline-block>signal</label>
+			<input id="inputSignal" type="text" class="inputs saveable" title="signal" placeholder="signal" />
+		</div>
+		<div class="lineButtons">
+			<button id="signal_Btn" class="btn">set signal</button>
+		</div>
+	</div>
+
+	<!-- target contract address -->
+	<div class="lineContainer">
+		<div class="lineInputs">
+			<label class="labels" display: inline-block>contract address</label>
+			<input type="text" id="contractAddress" class="inputs saveable" title="contract address" placeholder="contract address">
+		</div>
+		<div class="lineButtons">
+
+
+		</div>
+	</div>
+	
+	<!-- verify inputs & output -->
+	<div class="proof">
+		<div class="proofInputBoxes">
+			<label class="labels" style="margin-right: 380px" display: inline-block>proof</label>
+			<div>
+				<input id="inputMerkRoot" type="text" class="inputs saveable" title="merkle root" placeholder="merkle root" />
+				<label class="labels proofLabels" display: inline-block>merkle root</label>	
+			</div>
+			<div>
+				<input id="inputNullHash" type="text" class="inputs saveable" title="nullifier hash" placeholder="nullifier hash" />
+				<label class="labels proofLabels" display: inline-block>nullifier hash</label>
+			</div>
+			<div>
+				<input id="inputProof" type="text" class="inputs saveable" title="proof (packed)" placeholder="proof (packed)" />
+				<label class="labels proofLabels" display: inline-block>proof (packed)</label>
+			</div>
+		</div>
+	</div>
+
+	<div id="autoloadContainer">
+		<input id="autoLoad" type="checkbox" class="saveable">
+		<label class="labels">autoload verified proofs</label>
+	</div>
+
+	<div id="bottomButtons">
+		<div id="actionButtons">
+			<button id="loadProof_Btn" class="btn" title="load received proof data">load proof</button>
+			<button id="verify_Btn" class="btn" title="call contract function">verifyAndExecute</button>
+		</div>
+			<button id="save_Btn" class="btn" title="save ctrl + s"><u>s</u>ave inputs</button>
+	</div>
+	
+
+	
+
+	<div id="spLabelContainer">
+		<label class="labels">scratchpad</label>
+	</div>
+	
+	<div id="spContainer">
+		<textarea id="scratchpad" class="saveable" placeholder="scratchpad"></textarea>
+	</div>
+
+</body>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.0/ethers.umd.min.js"
+	integrity="sha512-+Ftowzj6zmwHlez4gpQxd7QQUzK/ocgu10pukN3Pyqblni7yJ9r/WTpNHoYKL4DGOp5givxSUZjJcVY7Az9OAQ=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+
+<script src="./index.js" type="module"></script>
+
+</html>

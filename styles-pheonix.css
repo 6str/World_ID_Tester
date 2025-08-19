@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;900&display=swap");
+
+* {
+	font-family: "Poppins", sans-serif, monospace;
+	margin: 0;
+	padding: 0;
+}
+
+
+:root {
+	--box-shadow: 0 0.5rem 1rem rgba(246, 238, 238, 0.2);
+}
+
+
+.monospace-fonts {
+	font-family: Lucida Console, Consolas, Monaco, Liberation Mono,
+		DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+	font-size: 20px;
+}
+
+
+body {
+	height: 100%;
+	background-color: #21222a;
+	padding: 0 20px;
+	min-width: 600px;
+}
+
+
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 30px;
+	color: rgb(220, 220, 220);
+	font-size: 3vw;
+	font-weight: bold;
+}
+
+
+#subHeaderContainer {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
+	margin-bottom: 50px;
+}
+
+
+.fa-copy {
+	color: rgb(120, 120, 120);
+}
+
+.fa-copy:hover {
+	color: rgb(150, 150, 150);
+	cursor: pointer;
+  	box-shadow: var(--box-shadow);
+}
+
+.fa-copy:active {
+	box-shadow: var(--box-shadow);
+	animation: bounce 0.3s;
+}
+
+
+#walletAddress {
+	max-width: 125px;
+	border-radius: 10px;
+	color: #54b859;
+	user-select: none;
+	background-color: rgb(40, 40, 40);
+	text-align: center;
+	margin: 5px 0;
+	margin-left: 10px;
+	padding: 10px;
+	font-size: 16px;
+	font-weight: 500;
+	font-family: Consolas, Monaco, Lucida Console,
+		DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+
+.lineContainer {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+
+.lineInputs {
+	display: flex;
+	flex-direction: column;
+}
+
+
+.lineButtons {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	margin-left: 20px;
+	margin-bottom: 2px;
+}
+
+
+#contractContianer {
+	display: flex;
+	margin-top: 30px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+#contractInputs {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid greenyellow;
+}
+
+
+#contractButtons {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	border: 1px solid plum;
+}
+
+
+#contractAddress {
+	border-radius: 5px;
+}
+
+
+.labels {
+	color: rgb(215, 215, 215);
+	font-weight: 400;
+}
+
+
+.proofLabels {
+	margin-left: 20px;
+}
+
+
+.inputs {
+	border-radius: 5px;
+	background-color: rgb(200, 200, 200);
+	margin: 5px 0;
+	margin-left: 10px;
+	padding: 10px;
+	width: 380px;
+	font-size: 16px;
+	font-weight: 400;
+	font-family: Consolas, Monaco, Lucida Console,
+		DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
+#autoloadContainer {
+	margin-top: 10px;
+	margin-left: 12px;
+	font-size: 12px;
+}
+
+#autoLoad {
+	accent-color: #54b859
+}
+
+
+#bottomButtons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+
+#spLabelContainer {
+	margin-top: 30px;
+	margin-bottom: 5px;
+}
+
+
+#spContainer {
+	display: flex;
+}
+
+
+#scratchpad {
+	padding: 10px;
+	width: 100%;
+	height: 200px;
+	border-radius: 5px;
+	background-color: rgb(200, 200, 200);
+}
+
+
+.btn {
+	background-color: #54b859;
+	font-weight: 600;
+	margin: 0 10px;
+	padding: 0px 10px;
+	height: 45px;
+	min-width: 70px;
+	border-radius: 10px;
+}
+
+.btn:hover {background-color: #59c85d}
+
+.btn:active {
+  box-shadow: -1px 1px rgb(78, 77, 77);
+  transform: translateY(2px);
+}
+
+
+.errorEffects {
+	animation: shake 0.65s ease;
+	border: 2px solid rgb(200, 30, 0);
+	text-shadow: rgb(200, 30, 0);
+	box-shadow: 0px 0px 3px 1px rgb(200, 30, 0);
+	transition: box-shadow ease-in-out 0.125s;
+}
+
+
+@keyframes shake {
+	0% { transform: translate(1px, 1px) rotate(0deg); }
+	25% { transform: translate(-1px, -1px) rotate(-1deg); }
+	50% { transform: translate(1px, -1px) rotate(1deg); }
+	75% { transform: translate(-1px, 1px) rotate(-1deg); }
+	100% { transform: translate(1px, 1px) rotate(1deg); }
+}
+
+@keyframes bounce {
+	0% { transform: scale(1) translateY(0); }
+	10% { transform: scale(1.2, 0.8); }
+	30% { transform: scale(0.8, 1.1) translateY(-2px); }
+	50% { transform: scale(1) translateY(0); }
+	100% { transform: translateY(0); }
+}
+
+
